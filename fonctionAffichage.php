@@ -11,8 +11,6 @@ function basDePage(){
     echo "</body>";
     echo " </html>";
 }
-function test(){
-    echo "test";
-}
+
 
 ?>
