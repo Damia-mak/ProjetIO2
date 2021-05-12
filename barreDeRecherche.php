@@ -1,12 +1,11 @@
 <?php
-
+// Rajouter if(!isset($_SESSION["user"])){
 function barrederecherche(){ ?>/formulaire de recherche 
     <form action="...." method="get">
     Recherche : <input type="search" name="recherche" placeholder="Rechercher des nouveaux comptes">
     Envoyer : <input type="submit" name="envoyer"></form>
      <?php
 }
-
 function Recup_pseudo($connex){ 
   $req = "select*from Pseudo"; //les id
   $users= mysqli_query($connex,$req);
@@ -24,8 +23,8 @@ function connexion_bd(){
   $base= "root";
   $connex=mysqli_connect($serveur,$login,$mdp,$base);//connection à la base de donnée 
   if (!$connex){
-    page_erreur(ERR_CONNEX, mysqli_connect_error($connex)); exit;
-    echo mysqli_connect_error($connex);
+    page_erreur(ERR_CONNEX, mysqli_connect_error($connex));
+    exit;
   }
   return $connex;
 } 
@@ -47,13 +46,14 @@ function pasdutilisateurs(){
   erreur("Aucun compte trouvé");
   }
 }
+//fonction requise //
 require_once 'fonctionAffichage.php';
+//affichage de la page//
 entete("rechercher des utilisateurs","Style.css");
 barrederecherche();
 $connex=mysqli_connect($serveur,$login,$mdp,$base);//connection à la base de donnée  
 mysqli_free_result($resultat);
 mysqli_close($connex);
 pasdutilisateurs();
-
 basDePage();	
 ?>
